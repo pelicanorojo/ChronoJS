@@ -1,0 +1,43 @@
+<html>
+<head>
+	<script src="chrono.js"></script>
+</head>
+<body>
+<script>
+window.setTimeout( function () {
+	var timer = new TimeBeats(1000, function ( )  {
+		console.log('---- timer: ' + timer.getRemainingTime());
+	}, {ticks: 5});
+
+	console.log('---- start: ' + timer.getRemainingTime());
+	timer.start();
+	console.log('---- start: ' + timer.getRemainingTime());
+
+	window.setTimeout( function () {
+		console.log('pause: '  + timer.getRemainingTime() );
+		timer.pause();
+		console.log('pause: '  + timer.getRemainingTime() );	
+	}, 300);
+
+	window.setTimeout( function () {
+		console.log('resume: '  + timer.getRemainingTime());
+		timer.resume();
+		console.log('resume: '  + timer.getRemainingTime() );	
+	}, 500);
+
+	window.setTimeout( function () {
+		console.log('pause: '  + timer.getRemainingTime() );
+		timer.pause();
+		console.log('pause: '  + timer.getRemainingTime() );	
+	}, 700);
+
+	window.setTimeout( function () {
+		console.log('resume: '  + timer.getRemainingTime());
+		timer.resume();
+		console.log('resume: '  + timer.getRemainingTime() );	
+	}, 900);
+
+}, 2000 );
+</script>
+</body>
+</html>
