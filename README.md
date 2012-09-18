@@ -11,21 +11,20 @@ and resume the paused period and the subsecuent ticks.
 
 Methods:
 
-initialize: function (timeout, callback, options)
+initialize: function (period, callback, options)
 
 returns: this
 
-timeout is the period // I will rename this soon. By now is mandatory to pass
-this parameter in the constructor, the initialization method or in in the start method.
+period is the tick's period
 
 callback is for call at the end of each period.
 
 options is an optional object with this properties:
 - ticks: how much periods do you want. (default is 1, and if you pass 0 it means infinity)
 
-start: function ( timeout, callback, options )
+start: function (  )
 
-starts the timer and reintroduce optionally the initilization params.
+starts the timer.
 
 stop: function ()
 
@@ -35,9 +34,9 @@ pause: function ()
 
 pause the timer
 
-resume: function ( timeout, callback )
+resume: function ( period, callback )
 
-resume the timer, and allow to pass optional new timeout and callback params.
+resume the timer, and allow to pass optional new period and callback params.
 
 the resume methods firt do de partially done period, and then continue with the whole remaining periods.
 
