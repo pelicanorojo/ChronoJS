@@ -4,6 +4,25 @@
 </head>
 <body>
 <script>
+//Backbone fake 
+Backbone = {
+	Model: {
+		extend: function ( proto ) {
+			var Constructor = function ( timeout, callback, options ) {
+				this.initialize( timeout, callback, options );
+			};
+
+			Constructor.prototype = proto;
+
+			return Constructor;
+		}
+	}
+};
+
+var	TimeBeats = Backbone.Model.extend(TimeBeatsPrototype);
+
+</script>
+<script>
 window.setTimeout( function () {
 	var timer = new TimeBeats(1000, function ( )  {
 		console.log('---- timer: ' + timer.getRemainingTime());

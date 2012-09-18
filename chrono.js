@@ -3,34 +3,20 @@
  *
 */
 /**
- * MODEL: TimeBeats
+ * MODEL: TimeBeatsPrototype
  *
  *
  */
+var	TimeBeatsPrototype = {
+	initialize: function (period, callback, options) {
 
-//Backbone fake 
-Backbone = {
-	Model: {
-		extend: function ( proto ) {
-			var Constructor = function ( timeout, callback, options ) {
-				this.initialize( timeout, callback, options );
-			};
-
-			Constructor.prototype = proto;
-
-			return Constructor;
-		}
-	}
-}
-var	TimeBeats = Backbone.Model.extend({
-
-	initialize: function (timeout, callback, options) {
-
-		this.timeout =  timeout || this.timeout;//beat period
+		this.period =  period || this.period || 0;//beat period
 		this.callback  =  callback || this.callback;
 		//desired ticks count
 		this.ticks = ( options && (typeof options.ticks !== 'undefined')) ? options.ticks : this.ticks || 1;//one tick by default, tick must be undefined or Natural number.
 		this.ticks = window.Math.round( window.Math.abs(this.ticks) );
+
+		this._reset();
 		
 		return this;
 	},
@@ -77,7 +63,7 @@ var	TimeBeats = Backbone.Model.extend({
 			} 
 
 			that.callback();
-		}, this.timeout );
+		}, this.period );
 	},
 	_reset: function () {
 
@@ -89,12 +75,8 @@ var	TimeBeats = Backbone.Model.extend({
 
 		return this;
 	},
-	start: function ( timeout, callback, options ) {
-		this.initialize( timeout, callback, options );
-
-		this._reset();
-		
-		this.remainingTicks = this.ticks ? this.ticks - 1: Number.POSITIVE_INFINITY;
+	start: function ( ) {
+		this.remainingTicks = this.ticks ? this.ticks : Number.POSITIVE_INFINITY;
 
 		this.lastTick = new window.Date();
 
@@ -111,12 +93,12 @@ var	TimeBeats = Backbone.Model.extend({
 		this.pauseTick =  new window.Date();
 		return this;
 	},
-	resume: function ( timeout, callback ) {
+	resume: function ( period, callback ) {
 		var 
 			that = this;
 
 		this.callback = callback || this.callback;
-		this.timeout = timeout || this.timeout;
+		this.period = period || this.period;
 		//terminar tick actual
 		this._createPaddingTimeout( function () {
 			//restart timer
@@ -136,8 +118,8 @@ var	TimeBeats = Backbone.Model.extend({
 
 		if ( this.lastTick ) {
 			remaining = this.pauseTick ? 
-			this.timeout - ( this.pauseTick - this.lastTick ) :
-			this.timeout - ( new window.Date() - this.lastTick );
+			this.period - ( this.pauseTick - this.lastTick ) :
+			this.period - ( new window.Date() - this.lastTick );
 		} else {
 			remaining = 0;
 		}
@@ -148,11 +130,11 @@ var	TimeBeats = Backbone.Model.extend({
 		var remaining;
 
 		if ( this.remainingTicks !== Number.POSITIVE_INFINITY ) {
-			remaining = this.getRemainingTickTime() + this.remainingTicks * this.timeout;	
+			remaining = this.getRemainingTickTime() + this.remainingTicks * this.period;	
 		} else {
 			remaining = -1;
 		}
 
 		return remaining;
 	}
-});
+};
