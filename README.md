@@ -17,7 +17,7 @@ returns: this
 
 period is the tick's period
 
-callback is for call at the end of each period.
+callback is for call at the end of each period. Now a boolean param lastBeat is passed!!
 
 options is an optional object with this properties:
 - ticks: how much periods do you want. (default is 1, and if you pass 0 it means infinity)
