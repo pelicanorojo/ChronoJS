@@ -35,9 +35,9 @@ pause: function ()
 pause the timer
 
 resume: function ()
-
-// deprecated: resume the timer, and allow to pass optional new period and callback params.
-// the resume methods firt do de partially done period, and then continue with the whole remaining periods.
+resume the timer
+the resume methods firt do de partially done period, and then continue with the whole remaining periods.
+// deprecated: "and allow to pass optional new period and callback params"
 
 getRemainingTicks: function ()
 
