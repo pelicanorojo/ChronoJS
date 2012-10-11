@@ -63,7 +63,7 @@ return: this ( not the remaining else the used for start the timer )
 getPeriod: function ()
 returns the period
 
-setPeriod: function ()
+setPeriod: function () //for use in stopped state, I fix this soon....
 returns this
 
 addRemainingTicks: function () 
