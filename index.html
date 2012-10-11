@@ -19,42 +19,81 @@ Backbone = {
 	}
 };
 
-var	TimeBeats = Backbone.Model.extend(TimeBeatsPrototype);
+var	TimeBeats = Backbone.Model.extend( TimeBeatsPrototype );
 
 </script>
 <script>
 window.setTimeout( function () {
-	var timer = new TimeBeats(1000, function ( )  {
-		console.log('---- timer: ' + timer.getRemainingTime());
-	}, {ticks: 5});
+	var timer = new TimeBeats(1000, function ( lastBeat )  {
+		console.log('---- timer: ' + timer.getRemainingTime() + ' lastBeat: ' + lastBeat );
+	}, { ticks: 5 } );
 
 	console.log('---- start: ' + timer.getRemainingTime());
 	timer.start();
 	console.log('---- start: ' + timer.getRemainingTime());
 
 	window.setTimeout( function () {
-		console.log('pause: '  + timer.getRemainingTime() );
+		console.log('pause1: '  + timer.getRemainingTime() );
 		timer.pause();
-		console.log('pause: '  + timer.getRemainingTime() );	
+		console.log('pause1: '  + timer.getRemainingTime() );	
 	}, 300);
 
 	window.setTimeout( function () {
-		console.log('resume: '  + timer.getRemainingTime());
+		console.log('resume1: '  + timer.getRemainingTime());
 		timer.resume();
-		console.log('resume: '  + timer.getRemainingTime() );	
+		console.log('resume1: '  + timer.getRemainingTime() );	
 	}, 500);
 
 	window.setTimeout( function () {
-		console.log('pause: '  + timer.getRemainingTime() );
+		console.log('pause2: '  + timer.getRemainingTime() );
 		timer.pause();
-		console.log('pause: '  + timer.getRemainingTime() );	
-	}, 700);
+		console.log('pause2: '  + timer.getRemainingTime() );	
+	}, 1200);
 
 	window.setTimeout( function () {
-		console.log('resume: '  + timer.getRemainingTime());
+		console.log('resume2: '  + timer.getRemainingTime());
 		timer.resume();
-		console.log('resume: '  + timer.getRemainingTime() );	
-	}, 900);
+		console.log('resume2: '  + timer.getRemainingTime() );	
+	}, 1500);
+
+//======================
+	window.setTimeout( function () {
+		console.log('pause3: '  + timer.getRemainingTime() );
+		timer.pause();
+		console.log('pause3: '  + timer.getRemainingTime() );	
+	}, 2000);
+
+	window.setTimeout( function () {
+		console.log('pause4: '  + timer.getRemainingTime() );
+		timer.pause();
+		console.log('pause4: '  + timer.getRemainingTime() );	
+	}, 2200);	
+
+	window.setTimeout( function () {
+		console.log('resume3: '  + timer.getRemainingTime());
+		timer.resume();
+		console.log('resume3: '  + timer.getRemainingTime() );	
+	}, 2500);
+
+	window.setTimeout( function () {
+		console.log('resume4: '  + timer.getRemainingTime());
+		timer.resume();
+		console.log('resume4: '  + timer.getRemainingTime() );	
+	}, 2600);	
+
+	window.setTimeout( function () {
+		console.log('add 5 Ticks remaining ticks : '  + timer.getRemainingTicks() );		
+		console.log('add 5 Ticks remaining time : '  + timer.getRemainingTime() );
+		timer.addRemainingTicks( 5 );
+		console.log('add 5 Ticks remaining ticks : '  + timer.getRemainingTicks() );		
+		console.log('add 5 Ticks remaining time  : '  + timer.getRemainingTime() );	
+	}, 3000 );
+
+	window.setTimeout( function () {
+		console.log('change period : '  + timer.getRemainingTime() );
+		timer.setPeriod( 500 );
+		console.log('change period : '  + timer.getRemainingTime() );	
+	}, 3500 );	
 
 }, 2000 );
 </script>
