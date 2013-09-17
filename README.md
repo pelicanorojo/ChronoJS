@@ -124,7 +124,6 @@ function tickFn ( lastBeat, startCall ) {
 
 timeBeat.start( { callBackOnStart: true } );
 ```
-_**Checkout the index.html file to see it working on a real Backbone example**_
 
 ## License 
 
