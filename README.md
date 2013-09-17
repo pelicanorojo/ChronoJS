@@ -5,7 +5,7 @@ Javascript - Time Control Library
 
 This is a JS Librarly for manage time. Oh yes Albert, the time!
 
-It have 2 modules by now, TimeBeats and babySteps.
+It have 1 modules by now, TimeBeats. And soon will have babySteps.
 
 ## CRNJS.TimeBeats Module
 
