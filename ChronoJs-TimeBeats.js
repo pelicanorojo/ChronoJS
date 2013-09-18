@@ -1,6 +1,7 @@
 /**
  * LIBRARY: ChronoJS
  *
+ * Author: Pablo E. Benito - pelicanorojo - bioingbenito@gmail.com
  * https://github.com/pelicanorojo/ChronoJS
  *
 */
