@@ -13,9 +13,10 @@
  * Are pending commonJS and AMD versions.
  *
  */
-(function ( global ) {
-	var
-		CRNJS = global.CRNJS = global.CRNJS || {};
+var
+	CRNJS = CRNJS || {};//TODO: adapt for commonjs and amd
+
+(function ( CRNJS ) {
 
 	function dummyFn () {}
 
@@ -219,13 +220,13 @@
 		}
 	};
 
-	CRNJS.TimeBeats = function ( period, callback, options ) {
+	CRNJS.TimeBeats = function ( /*initialize arguments*/ ) {
 		//If call without arguments initialize the instance.
 		if ( arguments.length ) {
 			this.initialize.apply( this, arguments );
 		}
 		return this;
-	}
+	};
 
 	CRNJS.TimeBeats.prototype = CRNJS.timeBeats;
-}( this ));
+}( CRNJS ));

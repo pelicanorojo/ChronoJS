@@ -11,9 +11,10 @@
  * You can use CRNJS.babySteps for create a sequence in wich you add functions to ron in a specified delay relative to the previous one.
  *
  */
-(function ( global ) {
-	var
-		CRNJS = global.CRNJS = global.CRNJS || {};
+ var
+	CRNJS = CRNJS || {};//TODO: adapt for commonjs and amd
+	
+(function ( CRNJS ) {
 
 	CRNJS.babySteps = function ( generalContext ) {
 		var
@@ -50,5 +51,5 @@
 		pub.start = executeNext;
 
 		return pub;
-	}
-}( this ));
+	};
+}( CRNJS ));
