@@ -14,14 +14,15 @@
  var
 	CRNJS = CRNJS || {};//TODO: adapt for commonjs and amd
 	
-(function ( CRNJS ) {
+(function ( CRNJS ) {//TODO: partir el objeto en obj public y obj privado,
+	//quiza con factories difererentes.
 
 	CRNJS.babySteps = function ( generalContext ) {
 		var
 			seq = [],
 			pub = {};
 
-		function addNext ( fn, args, dT, context ) {
+		function addNext ( fn, dT, context, args ) {
 
 			seq.push({
 				fn: fn,
