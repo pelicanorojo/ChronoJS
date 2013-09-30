@@ -13,9 +13,6 @@
  * Are pending commonJS and AMD versions.
  *
  */
-var
-	CRNJS = CRNJS || {};//TODO: adapt for commonjs and amd
-
 (function ( CRNJS ) {
 
 	function dummyFn () {}
