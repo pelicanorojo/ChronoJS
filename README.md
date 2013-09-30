@@ -125,6 +125,105 @@ function tickFn ( lastBeat, startCall ) {
 timeBeat.start( { callBackOnStart: true } );
 ```
 
+## CRNJS.babySteps Module
+
+This module is for construct function sequence, you can generate a sequence of function to execute,
+set how many times it will be repeated ( 0 to infinity ) and intercalate waits.
+
+On factor, you can pass the context to use as "this" in the sequenced functions,
+and a public interface ( described below ) will be returned.
+
+
+###Factory Function
+
+#####CRNJS.babySteps
+
+Factory function, returns publicInterface, and sets the default context for the sequenced functions.
+
+```javascript
+CRNJS.babySteps: function ( context )
+returns: publicInterface
+```
+
+* ```context``` _object_: A default context for the functions in the sequence.
+
+###publicInterface Methods
+
+#####addNext
+
+```javascript
+addNext: function ( fn, dT, context, args )
+returns: publicInterface
+```
+
+* ```fn``` _function_: A function to run in the sequence.
+
+* ```dT``` _number_: Wait milliseconds for the fn execution, relatives to the prior fn or wait in the sequence.
+
+* ```context``` _object_: The context to apply in fn execution, if not set the once passed on factory will be used as default.
+
+* ```args``` _Array_: The array of arguments to pass to fn, if you don't pass an array, the param will be wrapped like this: [ args ].
+
+
+##### repeat
+
+By default the sequence is not repeated. With this method yo can set 1 to infinity repetitions.
+
+```javascript
+repeat: function ( aRepetitions )
+returns: publicInterface
+```
+
+* ```aRepetitions``` _number_: Set how many times will be repeated the sequence, 0 or undefined means infinity.TODO:
+  refactor so 0 means 0 repetitions, -1, infinity.
+
+##### wait
+
+Inserts a wait in the sequence. It is usefull after the last fn in the sequence when there is repetitions.
+
+```javascript
+wait: function ( dT )
+returns: publicInterface
+```
+
+* ```dT``` _number_: Wait in milliseconds.
+
+##### start
+
+Triggers the sequence execution.
+
+```javascript
+start: function ()
+returns: publicInterface
+```
+
+### Example of use
+
+```javascript
+
+var
+	MyObj = {
+		name: 'pepe',
+		sayHi : function ( ) { console.log ( ' Hi! my name is ' + this.name ); },
+		sayBye: function ( ) { console.log ( ' Bye!' ); }
+	};
+
+
+CRNJS.babySteps( MyObj )
+	.addNext( MyObj.sayHi, 0 )
+	.addNext( MyObj.sayBye, 500 )
+	.addNext(
+		function ( contextName ) { this.console.log ( 'no default context', contextName ); },
+		500,
+		this,
+		['global context'])
+	.wait( 500 )
+	.repeat( 1 )
+	.start();
+```
+
+
+
 ## License 
 
 (The MIT License)
